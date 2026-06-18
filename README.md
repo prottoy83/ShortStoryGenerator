@@ -49,3 +49,21 @@ This architecture is purely PyTorch-native and device-agnostic. It seamlessly su
 * AMD ROCm environments
 
 ---
+
+## Dependencies & Setup
+
+Install the Python dependencies listed in `requirements.txt`. For most users the following will work (CPU-only):
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+If you want CUDA/GPU-enabled `torch`, follow the official PyTorch install selector at https://pytorch.org/get-started/locally to pick the correct `pip` or `conda` command for your CUDA version, then install the rest of the deps with `pip install -r requirements.txt` (you can remove `torch` from `requirements.txt` if you install a specific CUDA build).
+
+After dependencies are installed, you can run the training or generation scripts from the workspace root. Example (in a terminal):
+
+```bash
+python src/main.py      # start training (will stream TinyStories)
+python server/generate.py  # run the generator interactively
+```
