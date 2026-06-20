@@ -25,7 +25,7 @@ def loadModel(checkpoint_path, device):
 
     return model, tokenizer
 
-def genStory(model, tokenizer, prompt, device, max_tok=100, temp=0.9):
+def genStory(model, tokenizer, prompt, device, max_tok=30, temp=0.7):
 
     tokens = tokenizer.encode(prompt)
 
@@ -39,14 +39,16 @@ def genStory(model, tokenizer, prompt, device, max_tok=100, temp=0.9):
             x=torch.tensor([tokens], dtype=torch.long).to(device=device)
 
             logits = model(x)
-
             next_token = logits[0, -1, :]
 
             nextTok = next_token / temp
 
             prob = F.softmax(nextTok, dim=-1)
 
-            nextToken = torch.multinomial(prob, num_samples=1).item()
+            top_prob, top_ind = torch.topk(prob, k=100)
+            choice = torch.multinomial(top_prob, num_samples=1)
+
+            nextToken = top_ind[choice].item()
             if nextToken == tokenizer.eos_id:
                 break
 
@@ -75,7 +77,7 @@ def main(promptx):
     #    story = genStory(model, tokenizer, prompt, device, max_tok=150, temp=0.8)
     #    print(f"[Generated Story]:\n{story}\n")
 
-    story = genStory(model, tokenizer, promptx, device, max_tok=150, temp=0.8)
+    story = genStory(model, tokenizer, promptx, device, max_tok=1500, temp=0.8)
     print(f"[Generated Story]:\n{story}\n")
 
 if __name__ == "__main__":

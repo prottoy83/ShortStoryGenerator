@@ -45,7 +45,10 @@ def genStory(model, tokenizer, prompt, device, max_tok=100, temp=0.9):
 
             prob = F.softmax(nextTok, dim=-1)
 
-            nextToken = torch.multinomial(prob, num_samples=1).item()
+            top_prob, top_ind = torch.topk(prob, k=100)
+            choice = torch.multinomial(top_prob, num_samples=1)
+
+            nextToken = top_ind[choice].item()
             if nextToken == tokenizer.eos_id:
                 break
 

@@ -22,7 +22,7 @@ def read_root():
 
 @app.get('/msg/{prompt}')
 async def sendStory(prompt: str):
-    token = 150
+    token = 500
     story = generator(prompt, token)
     return {"Message": story}
 
