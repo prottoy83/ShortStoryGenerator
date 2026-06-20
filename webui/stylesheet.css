@@ -1,0 +1,58 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.app{
+    height: 100vh;
+    display: flex;
+    background: #0f1720;
+    color: #e6eef6;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.sidebar{
+    width: 260px;
+    background: linear-gradient(180deg,#0b1220 0%,#09111a 100%);
+    border-right: 1px solid rgba(255,255,255,0.04);
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand{
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.sidebar-nav{ display:flex; flex-direction:column; gap:8px; margin-bottom:12px }
+.nav-btn{ background:transparent; color:inherit; border:0; padding:8px; text-align:left; border-radius:6px; cursor:pointer }
+.nav-btn.active{ background:rgba(255,255,255,0.04) }
+
+.settings{ margin-top:auto; font-size:13px; color: #bcd1ea }
+.settings input{ width:80px; margin-left:8px }
+
+.main{ flex:1; display:flex; flex-direction:column; }
+.main-header{ padding:16px; border-bottom:1px solid rgba(255,255,255,0.03) }
+
+.messages{ padding:20px; overflow:auto; flex:1; display:flex; flex-direction:column; gap:12px }
+.message{ max-width:75%; padding:12px 14px; border-radius:12px; line-height:1.4 }
+.message.user{ background:linear-gradient(90deg,#0b63ff,#0066ff); align-self:flex-end; color:white }
+.message.assistant{ background:rgba(255,255,255,0.03); color:#dbe9ff; align-self:flex-start }
+
+.composer{ display:flex; gap:8px; padding:12px; border-top:1px solid rgba(255,255,255,0.03); align-items:center }
+.prompt{ flex:1; resize:none; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit }
+.composer-actions{ display:flex; gap:8px; align-items:center }
+.send{ background:#0b63ff; color:white; border:0; padding:8px 12px; border-radius:8px; cursor:pointer }
+
+/* Mobile */
+@media (max-width: 800px){
+    .sidebar{ display:none }
+    .message{ max-width:92% }
+    .brand{ font-size:16px }
+}
+
+/* small touches */
+textarea:focus, input:focus, button:focus{ outline: 2px solid rgba(11,99,255,0.18); outline-offset:2px }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>SmallStoryGen — Chat</title>
+        <link rel="stylesheet" href="stylesheet.css" />
+    </head>
+    <body>
+        <div class="app">
+            <aside class="sidebar">
+                <div class="brand">SmallStoryGen</div>
+                <nav class="sidebar-nav">
+                    <button class="nav-btn active">Chat</button>
+                    <button class="nav-btn">Generator</button>
+                </nav>
+                <div class="settings">
+                    <label>Max Tokens
+                        <input id="tokenSize" type="number" min="16" max="2048" value="150" />
+                    </label>
+                </div>
+            </aside>
+
+            <main class="main">
+                <header class="main-header">
+                    <h1>Conversation</h1>
+                </header>
+
+                <section id="messages" class="messages" aria-live="polite"></section>
+
+                <form id="composer" class="composer" action="javascript:void(0);">
+                    <textarea id="prompt" class="prompt" placeholder="Write a story starter or ask for a prompt..." rows="1"></textarea>
+                    <div class="composer-actions">
+                        <input id="fileInput" type="file" style="display:none" />
+                        <button id="sendBtn" class="send">Send</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
